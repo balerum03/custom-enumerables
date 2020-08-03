@@ -36,7 +36,9 @@ module Enumerable
     elsif args.nil? && block_given?
       my_each { |i| return false unless yield i }
     else
+      my_each { |i| return false if i.nil? || i == false }
     end
     true
+
   end
 end
