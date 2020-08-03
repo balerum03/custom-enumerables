@@ -39,6 +39,5 @@ module Enumerable
       my_each { |i| return false if i.nil? || i == false }
     end
     true
-
   end
 end
