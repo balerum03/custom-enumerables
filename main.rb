@@ -15,6 +15,15 @@ module Enumerable
     end
     self
   end
+
+  def my_select
+    return to_enum(:my_select) unless block_given?
+
+    new_array = []
+    my_each { |i| new_array << i if yield i }
+    new_array
+  end
+
 end
 
 
