@@ -1,4 +1,4 @@
-#ruby project.
+# ruby project.
 module Enumerable
   def my_each
     return to_enum(__method__) unless block_given?
@@ -24,6 +24,16 @@ module Enumerable
     new_array
   end
 
+  def my_all?(args = nil)
+    if !args.nil? && !args.is_a?(Class)
+      if args.is_a?(Regexp)
+        my_each { |i| return false unless !i[args].nil? || i[args] == 1 }
+      else
+        my_each { |i| return false unless i == args }
+      end
+    elsif
+    else
+    end
+    true
+  end
 end
-
-
