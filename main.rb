@@ -42,7 +42,8 @@ module Enumerable
   end
 
   def my_none?(args = nil)
-    return true if self == [] || self.nil?
+    return true if self == [] || nil?
+
     if !block_given? && args.nil?
       my_each { |i| return false if !i.nil? && i != false }
     elsif args.is_a?(Regexp)
@@ -56,5 +57,4 @@ module Enumerable
     end
     true
   end
-  
 end
