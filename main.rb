@@ -17,9 +17,4 @@ module Enumerable
   end
 end
 
-number_array = [1,2,3,4,5,56]
-string_array = ['h', 'o', 'l', 'a']
 
-new_array_test = []
-new_array_test = string_array.my_each{|x| p x}
-p new_array_test
