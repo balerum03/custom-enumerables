@@ -31,7 +31,8 @@ module Enumerable
       else
         my_each { |i| return false unless i == args }
       end
-    elsif
+    elsif args.is_a?(Class)
+      my_each { |i| return false unless i.is_a?(args) }
     else
     end
     true
