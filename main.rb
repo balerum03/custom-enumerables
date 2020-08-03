@@ -33,6 +33,8 @@ module Enumerable
       end
     elsif args.is_a?(Class)
       my_each { |i| return false unless i.is_a?(args) }
+    elsif args.nil? && block_given?
+      my_each { |i| return false unless yield i }
     else
     end
     true
