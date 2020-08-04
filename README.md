@@ -1,4 +1,4 @@
-# Bubble Sort with Ruby
+# Ruby Enumerables
 The aim of this first Ruby project is for us to start learning about the Ruby syntax and Enumerable functions
 We have created our own version of the Enumerable functions.
 
