@@ -98,3 +98,9 @@ module Enumerable
     new_array
   end
 end
+
+def multiply_els(arg = nil)
+  raise TypeError, 'No Array Given' if arg.nil? || !arg.is_a?(Array)
+
+  arg.my_inject(:*)
+end
