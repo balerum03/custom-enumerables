@@ -97,4 +97,24 @@ module Enumerable
     end
     new_array
   end
+  
+  def my_inject(arg1 = nil, arg2 = nil)
+    raise ArgumentError, 'No block Given or Empty Argument' if arg1.nil? && arg2.nil? && !block_given?
+    memo = nil
+    symbol = nil
+    if !arg1.nil? && !arg2.nil?
+      memo = arg1
+      symbol = arg2
+      my_each do |i|
+        memo = memo.send(symbol, i)
+      end
+    elsif arg1.is_a? Symbol
+      symbol = arg1
+      my_each { |i| memo = (memo ? memo.send(symbol, i) : i) }
+    else
+      memo = arg1
+      my_each { |i| memo = (memo ? yield(memo, i) : i) }
+    end
+    memo
+  end
 end
