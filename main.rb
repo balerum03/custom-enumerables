@@ -40,6 +40,21 @@ module Enumerable
     end
     true
   end
+  
+  def my_any?(args = nil)
+    if size == 1
+      return false if self[0].nil? || self[0] == empty? || self[0] == false
+    elsif args.nil? && !block_given?
+      my_each { |i| return !i.nil? || i != false ? true : false }
+    elsif !args.is_a?(Class) && !block_given?
+      my_each { |i| return true if i == args }
+    elsif args.is_a?(Class)
+      my_each { |i| return true if i.is_a?(args) }
+    elsif block_given?
+      my_each { |i| return true if yield i }
+    end
+    false
+  end
 
   def my_none?(args = nil)
     return true if self == [] || nil?
