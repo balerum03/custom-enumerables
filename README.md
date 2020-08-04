@@ -1,6 +1,5 @@
 # Ruby Enumerables
-The aim of this first Ruby project is for us to start learning about the Ruby syntax and Enumerable functions
-We have created our own version of the Enumerable functions.
+The aim of this Ruby project is for us to rebuild some of the ruby  Enumerable methods
 
 ![screenshot](assets/screen.jpg)
 
