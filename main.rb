@@ -75,13 +75,13 @@ module Enumerable
 
   def my_count(args = nil)
     return 0 if args.is_a?(Class)
-    
+
     count = 0
     my_each do |i|
       if !block_given?
         count += 1 if args.nil? || i == args
-      else
-        count +=1 if yield i
+      elsif yield i
+        count += 1
       end
     end
     count
@@ -98,7 +98,7 @@ module Enumerable
     end
     new_array
   end
-  
+
   def my_inject(arg1 = nil, arg2 = nil)
     raise ArgumentError, 'No block Given or Empty Argument' if arg1.nil? && arg2.nil? && !block_given?
 
