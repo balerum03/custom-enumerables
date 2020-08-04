@@ -85,4 +85,16 @@ module Enumerable
     end
     count
   end
+
+  def my_map(args = nil)
+    return to_enum(:my_map) if args.nil? && !block_given?
+
+    new_array = []
+    if args.nil?
+      my_each_with_index { |i, j| new_array[j] = yield i }
+    else
+      my_each_with_index { |i, j| new_array[j] = args.call(i) }
+    end
+    new_array
+  end
 end
