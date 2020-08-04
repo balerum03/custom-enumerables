@@ -40,7 +40,7 @@ module Enumerable
     end
     true
   end
-  
+
   def my_any?(args = nil)
     if size == 1
       return false if self[0].nil? || self[0] == empty? || self[0] == false
@@ -71,5 +71,18 @@ module Enumerable
       my_each { |i| return false if yield i }
     end
     true
+  end
+
+  def my_count(args = nil)
+    return 0 if args.is_a?(Class)
+    count = 0
+    my_each do |i|
+      if !block_given?
+        count += 1 if args.nil? || i == args
+      else
+        count +=1 if yield i
+      end
+    end
+    count
   end
 end
