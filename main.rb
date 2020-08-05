@@ -102,7 +102,7 @@ module Enumerable
   end
 
   def my_inject(arg1 = nil, arg2 = nil)
-    raise ArgumentError, 'No block Given or Empty Argument' if arg1.nil? && arg2.nil? && !block_given?
+    raise LocalJumpError, 'No block Given or Empty Argument' if arg1.nil? && arg2.nil? && !block_given?
 
     memo = nil
     symbol = nil
