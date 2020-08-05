@@ -44,8 +44,10 @@ module Enumerable
   def my_any?(args = nil)
     if size == 1
       return false if self[0].nil? || self[0] == empty? || self[0] == false
+    elsif args.is_a?(Regexp)
+      my_each { |i| return true if !i[args].nil? || i[args] == 1 }
     elsif args.nil? && !block_given?
-      my_each { |i| return !i.nil? || i != false ? true : false }
+      my_each { |i| return true if !i.nil? && i != false }
     elsif !args.is_a?(Class) && !block_given?
       my_each { |i| return true if i == args }
     elsif args.is_a?(Class)
