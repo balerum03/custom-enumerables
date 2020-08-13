@@ -129,8 +129,7 @@ def multiply_els(arg = nil)
   arg.my_inject(:*)
 end
 
-
-test_array2 = %w(a b c d)
+test_array2 = %w[a b c d]
 test_array1 = [11, 5, 3, 56]
 
 # p test_array2.my_select { |x| x == 'c' }
@@ -141,4 +140,4 @@ test_array1 = [11, 5, 3, 56]
 
 # p %w[andt dbear cdat].my_all?(/d/) #=> false
 
-p test_array1.all?(3) {|i| i > 2}
+p test_array1.all?(3) { |i| i > 2 }
