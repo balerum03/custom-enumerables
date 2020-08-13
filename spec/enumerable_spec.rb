@@ -104,7 +104,7 @@ describe Enumerable do
     end
   end
 
-  describe "#my_any?" do 
+  describe '#my_any?' do
     context 'If no argument is given' do
       context 'no block is given' do
         it 'returns true if any the elements are not Nil or false' do
@@ -139,19 +139,18 @@ describe Enumerable do
         end
       end
 
-        it 'Returns false if all the elements dont match the argument' do
-          expect(test_array2.my_any?(/d/)).to equal(false)
-        end
+      it 'Returns false if all the elements dont match the argument' do
+        expect(test_array2.my_any?(/d/)).to equal(false)
+      end
+    end
+
+    context 'If the argument is neither a Class or a Regex' do
+      it 'returns true if any of the elements are equal to the argument ' do
+        expect(test_array1.my_any?(1)).to equal(true)
       end
 
-      context 'If the argument is neither a Class or a Regex' do
-        it 'returns true if any of the elements are equal to the argument ' do
-          expect(test_array1.my_any?(1)).to equal(true)
-        end
-
-        it 'returns false if all the elements are not equal to the argument ' do
-          expect(test_array1.my_all?(1)).to equal(false)
-        end
+      it 'returns false if all the elements are not equal to the argument ' do
+        expect(test_array1.my_all?(1)).to equal(false)
       end
     end
   end
