@@ -7,8 +7,8 @@ describe Enumerable do
   let(:test_array3) { [1, 1, 1] }
   let(:test_array4) { [1, 1, nil] }
   let(:test_array5) { [nil, false, nil] }
-  let(:my_proc) { proc { |x| x + 1 }}
-  let(:my_block) {|sum, i| sum + i}
+  let(:my_proc) { proc { |x| x + 1 } }
+  let(:my_block) { |sum, i| sum + i }
   describe '#my_each' do
     # negative test
     context 'No block given' do
@@ -207,22 +207,22 @@ describe Enumerable do
     end
   end
 
-  describe "#my_count" do
-    context "no block given" do
-      context "argument is nil" do
-        it "counts all of the elements in the enumerable" do
+  describe '#my_count' do
+    context 'no block given' do
+      context 'argument is nil' do
+        it 'counts all of the elements in the enumerable' do
           expect(test_array1.my_count).to eq(33)
         end
       end
-      context "argument is given" do
-        it "counts all of the elements that match the argument" do
+      context 'argument is given' do
+        it 'counts all of the elements that match the argument' do
           expect(test_array1.my_count(8)).to eq(5)
         end
       end
     end
-    context "block has been given" do
-      it "counts all of the elements for which the block passes" do
-        expect(test_array1.my_count{|i| i < 8}).to eq(28)
+    context 'block has been given' do
+      it 'counts all of the elements for which the block passes' do
+        expect(test_array1.my_count { |i| i < 8 }).to eq(28)
       end
     end
   end
@@ -230,7 +230,7 @@ describe Enumerable do
   describe '#my_map' do
     context 'if argument is given' do
       it 'It raises an error if the argument is not a proc' do
-        expect {test_array1.my_map(10)}.to raise_error(NoMethodError)
+        expect { test_array1.my_map(10) }.to raise_error(NoMethodError)
       end
 
       it 'Calls a proc if a proc is passes as an argument' do
@@ -252,7 +252,7 @@ describe Enumerable do
       end
       context 'If block is given' do
         it 'should return an array of the elements passed to the block' do
-          expect(my_array.my_map {|i| i*3 }).to eq(my_array.map {|i| i*3 })
+          expect(my_array.my_map { |i| i * 3 }).to eq(my_array.map { |i| i * 3 })
         end
       end
     end
@@ -262,7 +262,7 @@ describe Enumerable do
     context 'if arguments are given' do
       context 'if no block is given' do
         it 'raises a TypeError if none of the arguments is a symbol or string' do
-          expect {my_array.my_inject(100)}.to raise_error(TypeError)
+          expect { my_array.my_inject(100) }.to raise_error(TypeError)
         end
 
         it 'accumulates using the symbol, using the first element as the default accumulator' do
@@ -276,11 +276,11 @@ describe Enumerable do
 
       context 'if a block is given' do
         it 'yields to the block with the accumulator provided' do
-          expect(my_array.my_inject(100){|sum, i| sum + i}).to eq(my_array.inject(100){|sum, i| sum + i})
+          expect(my_array.my_inject(100) { |sum, i| sum + i }).to eq(my_array.inject(100) { |sum, i| sum + i })
         end
 
         it 'yields to the block with the accumulator provided' do
-          expect(my_array.my_inject{|sum, i| sum + i}).to eq(my_array.inject{|sum, i| sum + i})
+          expect(my_array.my_inject { |sum, i| sum + i }).to eq(my_array.inject { |sum, i| sum + i })
         end
       end
     end

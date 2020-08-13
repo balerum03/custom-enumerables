@@ -128,4 +128,3 @@ def multiply_els(arg = nil)
 
   arg.my_inject(:*)
 end
-
