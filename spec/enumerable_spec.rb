@@ -8,6 +8,7 @@ describe Enumerable do
   let(:test_array4) { [1, 1, nil] }
   let(:test_array5) { [nil, false, nil] }
   let(:my_proc) { proc { |x| x + 1 }}
+  let(:my_block) {|sum, i| sum + i}
   describe '#my_each' do
     # negative test
     context 'No block given' do
@@ -260,12 +261,26 @@ describe Enumerable do
   describe '#my_inject' do
     context 'if arguments are given' do
       context 'if no block is given' do
-        it 'raises a TypeError if the argument given are not a symbol' do
+        it 'raises a TypeError if none of the arguments is a symbol or string' do
           expect {my_array.my_inject(100)}.to raise_error(TypeError)
         end
 
-        it 'returns the total accumulated value by performing the symbol arithmetics with the first element being the default accumulator' do
+        it 'accumulates using the symbol, using the first element as the default accumulator' do
           expect(test_array1.my_inject(:+)).to eq(139)
+        end
+
+        it 'accumulates using the symbol, using the first argument as the accumulator' do
+          expect(test_array1.my_inject(100, :+)).to eq(239)
+        end
+      end
+
+      context 'if a block is given' do
+        it 'yields to the block with the accumulator provided' do
+          expect(my_array.my_inject(100){|sum, i| sum + i}).to eq(my_array.inject(100){|sum, i| sum + i})
+        end
+
+        it 'yields to the block with the accumulator provided' do
+          expect(my_array.my_inject{|sum, i| sum + i}).to eq(my_array.inject{|sum, i| sum + i})
         end
       end
 

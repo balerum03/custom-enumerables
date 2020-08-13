@@ -159,3 +159,7 @@ myMapP = proc { |x| x }
 # p test_array2.my_inject(100)
 
 # p test_array2.my_inject(100)
+
+my_array = [1,2,3,4]
+
+p my_array.my_inject{|sum, i| sum + i}
