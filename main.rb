@@ -102,6 +102,8 @@ module Enumerable
   end
 
   def my_inject(arg1 = nil, arg2 = nil)
+    raise TypeError, "#{arg1} is not a symbol nor a string" if arg1.is_a?(Integer) && arg2.nil? && !block_given?
+
     raise LocalJumpError, 'No block Given or Empty Argument' if arg1.nil? && arg2.nil? && !block_given?
 
     memo = nil
@@ -130,7 +132,7 @@ def multiply_els(arg = nil)
 end
 
 test_array2 = %w[a b c d]
-test_array1 = [11, 5, 3, 56]
+test_array1 = [1, 2, 3, 5, 1, 7, 3, 4, 5, 7, 2, 3, 2, 0, 8, 8, 7, 8, 8, 6, 2, 3, 6, 1, 5, 2, 6, 7, 2, 5, 8, 2, 0]
 
 # p test_array2.my_select { |x| x == 'c' }
 
@@ -140,4 +142,20 @@ test_array1 = [11, 5, 3, 56]
 
 # p %w[andt dbear cdat].my_all?(/d/) #=> false
 
-p test_array1.all?(3) { |i| i > 2 }
+# p test_array1.all?(3) { |i| i > 2 }
+
+myMapP = proc { |x| x }
+
+# p test_array1.my_map(10)
+
+# p test_array1.inject(10000) {|prod, n| prod * n }
+# p test_array2.inject(100)
+# p test_array1.inject(:+)
+
+# # p test_array1.inject
+
+# p test_array1.my_inject(10, :*) {|prod, n| prod * n }
+
+# p test_array2.my_inject(100)
+
+# p test_array2.my_inject(100)
