@@ -154,4 +154,55 @@ describe Enumerable do
       end
     end
   end
+
+  describe '#my_none?' do
+    context 'If no argument is given' do
+      context 'no block is given' do
+        it 'returns true if all of the elements are Nil or false' do
+          expect(test_array5.my_none?).to equal(true)
+        end
+
+        it 'returns false if any of the elements are not Nil or false' do
+          expect(test_array4.my_none?).to equal(false)
+        end
+      end
+      context 'if block is given' do
+        it 'returns true if none the elements satisfy the block' do
+          expect(test_array2.my_none? { |word| word.length == 5 }).to equal(true)
+        end
+      end
+    end
+
+    context 'If argument is given' do
+      context 'If the argument is a class' do
+        it 'returns true if none elements are members of the argument' do
+          expect(test_array4.my_none?(String)).to equal(true)
+        end
+
+        it 'returns false if any elements are members of the argument' do
+          expect(test_array1.my_none?(Integer)).to equal(false)
+        end
+      end
+
+      context 'If the argument is a regular expression' do
+        it 'Returns true if none of the elements match the argument' do
+          expect(test_array2.my_none?(/z/)).to equal(true)
+        end
+      end
+
+      it 'Returns false if any of the elements match the argument' do
+        expect(test_array2.my_none?(/n/)).to equal(false)
+      end
+    end
+
+    context 'If the argument is neither a Class or a Regex' do
+      it 'returns true if none of the elements are equal to the argument ' do
+        expect(test_array1.my_none?(10)).to equal(true)
+      end
+
+      it 'returns false if any of the elements are equal to the argument ' do
+        expect(test_array1.my_none?(1)).to equal(false)
+      end
+    end
+  end
 end
