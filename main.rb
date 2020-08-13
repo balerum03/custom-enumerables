@@ -76,8 +76,6 @@ module Enumerable
   end
 
   def my_count(args = nil)
-    # return 0 if args.is_a?(Class)
-
     count = 0
     my_each do |i|
       if !block_given?
@@ -131,35 +129,3 @@ def multiply_els(arg = nil)
   arg.my_inject(:*)
 end
 
-test_array2 = %w[a b c d]
-test_array1 = [1, 2, 3, 5, 1, 7, 3, 4, 5, 7, 2, 3, 2, 0, 8, 8, 7, 8, 8, 6, 2, 3, 6, 1, 5, 2, 6, 7, 2, 5, 8, 2, 0]
-
-# p test_array2.my_select { |x| x == 'c' }
-
-# p test_array2.select { |x| x == 'c' }
-
-# p test_array1.all?(/t/)
-
-# p %w[andt dbear cdat].my_all?(/d/) #=> false
-
-# p test_array1.all?(3) { |i| i > 2 }
-
-myMapP = proc { |x| x }
-
-# p test_array1.my_map(10)
-
-# p test_array1.inject(10000) {|prod, n| prod * n }
-# p test_array2.inject(100)
-# p test_array1.inject(:+)
-
-# # p test_array1.inject
-
-# p test_array1.my_inject(10, :*) {|prod, n| prod * n }
-
-# p test_array2.my_inject(100)
-
-# p test_array2.my_inject(100)
-
-my_array = [1,2,3,4]
-
-p my_array.my_inject{|sum, i| sum + i}

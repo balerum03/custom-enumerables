@@ -283,7 +283,6 @@ describe Enumerable do
           expect(my_array.my_inject{|sum, i| sum + i}).to eq(my_array.inject{|sum, i| sum + i})
         end
       end
-
     end
   end
 end
