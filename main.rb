@@ -76,7 +76,7 @@ module Enumerable
   end
 
   def my_count(args = nil)
-    return 0 if args.is_a?(Class)
+    # return 0 if args.is_a?(Class)
 
     count = 0
     my_each do |i|

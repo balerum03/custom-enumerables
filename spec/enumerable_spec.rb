@@ -205,4 +205,24 @@ describe Enumerable do
       end
     end
   end
+
+  describe "#my_count" do
+    context "no block given" do
+      context "argument is nil" do
+        it "counts all of the elements in the enumerable" do
+          expect(test_array1.my_count).to eq(33)
+        end
+      end
+      context "argument is given" do
+        it "counts all of the elements that match the argument" do
+          expect(test_array1.my_count(8)).to eq(5)
+        end
+      end
+    end
+    context "block has been given" do
+      it "counts all of the elements for which the block passes" do
+        expect(test_array1.my_count{|i| i < 8}).to eq(28)
+      end
+    end
+  end
 end
